@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.template.backends import django
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -75,8 +77,14 @@ WSGI_APPLICATION = 'MapaCalor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backend.mysql',
+        'NAME': 'dwhDestino',
+        'USER': 'lfsolucoes02',
+        'PASSWORD': 'dwh123',
+        'HOST': 'mysql.lfsolucoes.com.br',
+        'PORT': '3306',
     }
 }
 
