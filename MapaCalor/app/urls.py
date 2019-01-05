@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from .views import *
 
-urlPatterns = [
+urlpatterns = [
     url(r'^filtro_mapa/', filtro_mapa, name='filtro_mapa')
 ]

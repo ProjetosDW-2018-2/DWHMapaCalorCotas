@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}
+Mapa de Calor - Dataware Housing Cotas
+{% endblock title %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+       <fieldset>
+          <legend><h3>Filtros</h3></legend>
+          <p>
+             <label>Categoria Administrativa</label>
+             <select id="CategoriaAdministrativa" name="CategoriaAdministrativa">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Cor Raça</label>
+             <select id="CorRaca" name="CorRaca">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Curso</label>
+             <select id="Curso" name="Curso">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>IES</label>
+             <select id="Ies" name="Ies">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Local Oferta</label>
+             <select id="LocalOferta" name="LocalOferta">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Modalidade Ensino</label>
+             <select id="ModalidadeEnsino" name="ModalidadeEnsino">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Organização Acadêmica</label>
+             <select id="OrganizacaoAcademica" name="OrganizacaoAcademica">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Sexo</label>
+             <select id="Sexo" name="Sexo">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Situação Aluno</label>
+             <select id="SituacaoAluno" name="SituacaoAluno">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+
+           <p>
+             <label>Tempo</label>
+             <select id="Tempo" name="Tempo">
+                 <option value="Todos">Todos</option>
+                 <option value="Teste1">Teste1</option>
+             </select>
+          </p>
+       </fieldset>
+
+        <p>
+            <button type="submit" class="btn btn-primary">
+                Exibir
+            </button>
+        </p>
+
+    </form>
+
+    {% for fato in lista %}
+        <p>Latitude: {{ fato.fk_local_oferta.latitude }}, Longitude: {{ fato.fk_local_oferta.longitude }}</p>
+    {% endfor %}
+
+{% endblock content %}
