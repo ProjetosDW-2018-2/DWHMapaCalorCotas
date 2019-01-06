@@ -13,7 +13,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Categoria Administrativa</label>
              <select id="CategoriaAdministrativa" name="CategoriaAdministrativa">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for catAdmin in dimCategoriaAdministrativa %}
+                    <option value="{{ catAdmin.id_categoria_administrativa }}">{{ catAdmin.no_categoria_administrativa }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -21,7 +23,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Cor Raça</label>
              <select id="CorRaca" name="CorRaca">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for corRaca in dimCorRaca %}
+                    <option value="{{ corRaca.id_cor_raca }}">{{ corRaca.nome }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -29,7 +33,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Curso</label>
              <select id="Curso" name="Curso">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for fatoCotasCurso in fatoCotasDimCurso %}
+                    <option value="{{ fatoCotasCurso.fk_curso }}">{{ fatoCotasCurso.fk_curso__descricao }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -37,7 +43,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>IES</label>
              <select id="Ies" name="Ies">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for fatoCotasIes in fatoCotasDimIes %}
+                    <option value="{{ fatoCotasIes.fk_ies }}">{{ fatoCotasIes.fk_ies__no_ies }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -45,7 +53,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Local Oferta</label>
              <select id="LocalOferta" name="LocalOferta">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for fatoCotasLocalOferta in fatoCotasDimLocalOferta %}
+                    <option value="{{ fatoCotasLocalOferta.fk_local_oferta }}">({{ fatoCotasLocalOferta.fk_local_oferta }}) - {{ fatoCotasLocalOferta.fk_local_oferta__no_municipio }} - {{ fatoCotasLocalOferta.fk_local_oferta__no_uf }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -53,7 +63,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Modalidade Ensino</label>
              <select id="ModalidadeEnsino" name="ModalidadeEnsino">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for modalidadeEnsino in dimModalidadeEnsino %}
+                    <option value="{{ modalidadeEnsino.id_modalidade_ensino }}">{{ modalidadeEnsino.no_modalidade_ensino }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -61,7 +73,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Organização Acadêmica</label>
              <select id="OrganizacaoAcademica" name="OrganizacaoAcademica">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for organizacaoAcademica in dimOrganizacaoAcademica %}
+                    <option value="{{ organizacaoAcademica.id_organizacao_academica }}">{{ organizacaoAcademica.no_organizacao_academica }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -69,7 +83,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Sexo</label>
              <select id="Sexo" name="Sexo">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for sexo in dimSexo %}
+                    <option value="{{ sexo.id_sexo }}">{{ sexo.nome }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -77,7 +93,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Situação Aluno</label>
              <select id="SituacaoAluno" name="SituacaoAluno">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for situacaoAluno in dimSituacaoAluno %}
+                    <option value="{{ situacaoAluno.id_situacao_aluno }}">{{ situacaoAluno.no_situacao_aluno }}</option>
+                 {% endfor %}
              </select>
           </p>
 
@@ -85,7 +103,9 @@ Mapa de Calor - Dataware Housing Cotas
              <label>Tempo</label>
              <select id="Tempo" name="Tempo">
                  <option value="Todos">Todos</option>
-                 <option value="Teste1">Teste1</option>
+                 {% for fatoCotasTempo in fatoCotasDimTempo %}
+                    <option value="{{ fatoCotasTempo.fk_tempo }}">{{ fatoCotasTempo.fk_tempo }}</option>
+                 {% endfor %}
              </select>
           </p>
        </fieldset>

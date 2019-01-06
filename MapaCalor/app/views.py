@@ -44,4 +44,21 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
 
         return render(request, template_name, fatCota)
     else:
-        return render(request, template_name)
+        dimCategoriaAdministrativa = DimCategoriaAdministrativa.objects.all()
+        dimCorRaca = DimCorRaca.objects.all()
+        fatoCotasDimCurso = FatoCotas.objects.values_list("fk_curso", "fk_curso__descricao", named=True).distinct()
+        fatoCotasDimIes = FatoCotas.objects.values_list("fk_ies", "fk_ies__no_ies", named=True).distinct()
+        fatoCotasDimLocalOferta = FatoCotas.objects.values_list("fk_local_oferta", "fk_local_oferta__no_municipio", "fk_local_oferta__no_uf", named=True).distinct()
+        dimModalidadeEnsino = DimModalidadeEnsino.objects.all()
+        dimOrganizacaoAcademica = DimOrganizacaoAcademica.objects.all()
+        dimSexo = DimSexo.objects.all()
+        dimSituacaoAluno = DimSituacaoAluno.objects.all()
+        fatoCotasDimTempo = FatoCotas.objects.values_list("fk_tempo", named=True).distinct()
+
+        filtros = {'dimCategoriaAdministrativa': dimCategoriaAdministrativa, 'dimCorRaca': dimCorRaca,
+                   "fatoCotasDimCurso": fatoCotasDimCurso, "fatoCotasDimIes": fatoCotasDimIes,
+                   "fatoCotasDimLocalOferta": fatoCotasDimLocalOferta, "dimModalidadeEnsino": dimModalidadeEnsino,
+                   "dimOrganizacaoAcademica": dimOrganizacaoAcademica, "dimSexo": dimSexo,
+                   "dimSituacaoAluno": dimSituacaoAluno, "fatoCotasDimTempo": fatoCotasDimTempo}
+
+        return render(request, template_name, filtros)
