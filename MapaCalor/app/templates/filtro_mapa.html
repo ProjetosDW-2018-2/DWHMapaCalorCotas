@@ -9,6 +9,16 @@ Mapa de Calor - Dataware Housing Cotas
         {% csrf_token %}
        <fieldset>
           <legend><h3>Filtros</h3></legend>
+
+           <p>
+             <label>Tipo Cota</label>
+             <select id="TipoCota" name="TipoCota">
+                 <option value="Todos">Todos</option>
+                 <option value="Cotista">Cotista</option>
+                 <option value="NCotista">Não Cotista</option>
+             </select>
+          </p>
+
           <p>
              <label>Categoria Administrativa</label>
              <select id="CategoriaAdministrativa" name="CategoriaAdministrativa">
@@ -119,7 +129,7 @@ Mapa de Calor - Dataware Housing Cotas
     </form>
 
     {% if Post %}
-        MA: {{ ma }}
+        Mapa Gerado com Sucesso
         <!--<iframe width="1400" height="600">{{ mapaa }}</iframe>-->
     {% else %}
         <!--<iframe src="https://www.meutimao.com.br"></iframe>-->
