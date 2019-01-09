@@ -118,8 +118,11 @@ Mapa de Calor - Dataware Housing Cotas
 
     </form>
 
-    {% for fato in lista %}
-        <p>Latitude: {{ fato.fk_local_oferta.latitude }}, Longitude: {{ fato.fk_local_oferta.longitude }}</p>
-    {% endfor %}
+    {% if Post %}
+        MA: {{ ma }}
+        <!--<iframe width="1400" height="600">{{ mapaa }}</iframe>-->
+    {% else %}
+        <!--<iframe src="https://www.meutimao.com.br"></iframe>-->
+    {% endif %}
 
 {% endblock content %}

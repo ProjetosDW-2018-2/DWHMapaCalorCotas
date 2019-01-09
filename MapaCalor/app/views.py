@@ -1,11 +1,16 @@
+import sys
+import os
+import folium
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-
+from folium.plugins import HeatMap
+from django.shortcuts import render_to_response
 
 # Create your views here.
 
 def filtro_mapa(request, template_name='filtro_mapa.html'):
     if request.method == "POST":
+        #sys.setrecursionlimit(100000)
         categoriaAdministrativa = request.POST.get("CategoriaAdministrativa")
         corRaca = request.POST.get("CorRaca")
         curso = request.POST.get("Curso")
@@ -17,7 +22,9 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
         situacaoAluno = request.POST.get("SituacaoAluno")
         tempo = request.POST.get("Tempo")
 
-        fatoCotas = FatoCotas.objects.all()[:100]
+        #fatoCotas = FatoCotas.objects.all()[:100]
+
+        fatoCotas = FatoCotas.objects.all()
 
         if tempo is not None and tempo != "Todos":
             fatoCotas = fatoCotas.filter(fk_tempo=tempo)
@@ -40,9 +47,28 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
         elif situacaoAluno is not None and situacaoAluno != "Todos":
             fatoCotas = fatoCotas.filter(fk_situacao_aluno=situacaoAluno)
 
-        fatCota = {'lista': fatoCotas}
+
+
+        locais = []
+
+        mapa = folium.Map(location=[-8.0176527, -34.9443739], zoom_start=4)
+
+        #locais = fatoCotas.values_list("fk_local_oferta__latitude", "fk_local_oferta__longitude")
+
+        for linha in fatoCotas :
+            if linha.fk_local_oferta.latitude is not None and linha.fk_local_oferta.longitude is not None :
+                temp = [float(linha.fk_local_oferta.latitude), float(linha.fk_local_oferta.longitude)]
+                locais.append(temp)
+
+        #HeatMap([[-8.0176527, -34.9443739]], radius=25).add_to(mapa)
+        HeatMap(locais, radius=25).add_to(mapa)
+
+        mapa.save('mapa.html')
+
+        fatCota = {'Post': True, 'Ma': mapa.get_root().render()}
 
         return render(request, template_name, fatCota)
+        #return render_to_response('mapa.html')
     else:
         dimCategoriaAdministrativa = DimCategoriaAdministrativa.objects.all()
         dimCorRaca = DimCorRaca.objects.all()
@@ -59,6 +85,9 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
                    "fatoCotasDimCurso": fatoCotasDimCurso, "fatoCotasDimIes": fatoCotasDimIes,
                    "fatoCotasDimLocalOferta": fatoCotasDimLocalOferta, "dimModalidadeEnsino": dimModalidadeEnsino,
                    "dimOrganizacaoAcademica": dimOrganizacaoAcademica, "dimSexo": dimSexo,
-                   "dimSituacaoAluno": dimSituacaoAluno, "fatoCotasDimTempo": fatoCotasDimTempo}
+                   "dimSituacaoAluno": dimSituacaoAluno, "fatoCotasDimTempo": fatoCotasDimTempo, "Post": False}
 
         return render(request, template_name, filtros)
+
+def mapa(request, template_name='mapa.html'):
+    return render(request, template_name)
