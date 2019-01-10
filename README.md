@@ -4,10 +4,10 @@
 > (Python + SQL + Pentaho)
 
 ### Índice
-* 1) Objetivos
-* 2) Instalação / configuração de ambiente
-* 3) Consultas e resultados
-* 4) Equipe
+* [1) Objetivos
+* [2) Instalação / configuração de ambiente
+* [3) Consultas e resultados
+* [4) Equipe
 
 ### Objetivos
 
@@ -31,7 +31,7 @@ $ conda --version
 
 
 ### Equipe
-- [Francisco Queiroga](https://github.com/chicoqueiroga)<br>
-- [Rafael Douglas](https://github.com/rafaeldougllas)<br>
-- [Everton Veloso](https://github.com/everton-nv)<br>
-- [Jadiel Eudes](https://github.com/Eudess)<br>
+- [Leonardo Farias](https://github.com/leoroberto)<br>
+- [Wendell](https://github.com/leoroberto)<br>
+- [Bonny](https://github.com/leoroberto)<br>
+- [Thyago](https://github.com/leoroberto)<br>
