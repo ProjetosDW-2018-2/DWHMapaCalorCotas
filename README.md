@@ -23,15 +23,8 @@
 ```
 $ conda --version
 ```
-* 1.2) Através do terminal, ou cmd, instale os pacotes do Pandas e Folium com os comandos:
-
-```
-$ conda install -c anaconda pandas
-```
-
-```
-$ conda install -c conda-forge folium
-```
+* 1.2) Instalar o PyCharm Community
+- [x] [PyCharm](https://www.jetbrains.com/pycharm/download)
 
 ### Consultas e resultados
 
