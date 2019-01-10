@@ -81,11 +81,11 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lfsolucoes02',
-        'USER': 'lfsolucoes02',
-        'PASSWORD': 'dwh123',
-        'HOST': 'mysql.lfsolucoes.com.br',
-        'PORT': '3306',
+        'NAME': ' ',
+        'USER': ' ',
+        'PASSWORD': ' ',
+        'HOST': '  ',
+        'PORT': ' ',
     }
 }
 

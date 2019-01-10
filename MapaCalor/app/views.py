@@ -24,36 +24,70 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
         situacaoAluno = request.POST.get("SituacaoAluno")
         tempo = request.POST.get("Tempo")
 
-        fatoCotas = FatoCotas.objects.all()
+        todos = True
+
+        fatoCotas = FatoCotas.objects.all().filter(fk_local_oferta__longitude__isnull=False,
+                                                   fk_local_oferta__latitude__isnull=False)
 
         if tempo is not None and tempo != "Todos":
             fatoCotas = fatoCotas.filter(fk_tempo=tempo)
-        elif corRaca is not None and corRaca != "Todos":
+
+        if corRaca is not None and corRaca != "Todos":
             fatoCotas = fatoCotas.filter(fk_cor_raca=corRaca)
-        elif categoriaAdministrativa is not None and categoriaAdministrativa != "Todos":
+            todos = False
+
+        if categoriaAdministrativa is not None and categoriaAdministrativa != "Todos":
             fatoCotas = fatoCotas.filter(fk_categoria_administrativa=categoriaAdministrativa)
-        elif organizacaoAcademica is not None and organizacaoAcademica != "Todos":
+            todos = False
+
+        if organizacaoAcademica is not None and organizacaoAcademica != "Todos":
             fatoCotas = fatoCotas.filter(fk_organizacao_academica=organizacaoAcademica)
-        elif ies is not None and ies != "Todos":
+            todos = False
+
+        if ies is not None and ies != "Todos":
             fatoCotas = fatoCotas.filter(fk_ies=ies)
-        elif localOferta is not None and localOferta != "Todos":
-            fatoCotas = fatoCotas.filter(fk_local_oferta=localOferta)
-        elif sexo is not None and sexo != "Todos":
+            todos = False
+
+        if localOferta is not None and localOferta != "Todos":
+            fatoCotas = fatoCotas.filter(fk_local_oferta__no_uf=localOferta)
+            todos = False
+
+        if sexo is not None and sexo != "Todos":
             fatoCotas = fatoCotas.filter(fk_sexo=sexo)
-        elif curso is not None and curso != "Todos":
-            fatoCotas = fatoCotas.filter(fk_curso=curso)
-        elif modalidadeEnsino is not None and modalidadeEnsino != "Todos":
+            todos = False
+
+        if curso is not None and curso != "Todos":
+            fatoCotas = fatoCotas.filter(fk_curso__descricao=curso)
+            todos = False
+
+        if modalidadeEnsino is not None and modalidadeEnsino != "Todos":
             fatoCotas = fatoCotas.filter(fk_modalidade_ensino=modalidadeEnsino)
-        elif situacaoAluno is not None and situacaoAluno != "Todos":
+            todos = False
+
+        if situacaoAluno is not None and situacaoAluno != "Todos":
             fatoCotas = fatoCotas.filter(fk_situacao_aluno=situacaoAluno)
-        else:
-            fatoCotas = FatoCotas.objects.all()[:1000]
+            todos = False
+
+        if cotista is not None and cotista != "Todos" and cotista == "Cotista":
+            fatoCotas = fatoCotas.exclude(qtde_cotas=0)
+            todos = False
+
+        if cotista is not None and cotista != "Todos" and cotista == "NCotista":
+            fatoCotas = fatoCotas.exclude(qtde_nao_cotas=0)
+            todos = False
+
+        if todos == True:
+            fatoCotas = FatoCotas.objects.all().filter(fk_local_oferta__longitude__isnull=False,
+                                                       fk_local_oferta__latitude__isnull=False)[:1000]
 
         locais = []
 
         mapa = folium.Map(location=[-8.0176527, -34.9443739], zoom_start=4)
 
         # locais = fatoCotas.values_list("fk_local_oferta__latitude", "fk_local_oferta__longitude")
+
+        contadorRegistros = 0
+        valorTotalCotistaOuNaoCotista = 0
 
         for linha in fatoCotas:
             if linha.fk_local_oferta.latitude is not None and linha.fk_local_oferta.longitude is not None:
@@ -68,23 +102,24 @@ def filtro_mapa(request, template_name='filtro_mapa.html'):
                 temp = [float(linha.fk_local_oferta.latitude), float(linha.fk_local_oferta.longitude),
                         valorCotistaOuNaoCotista]
                 locais.append(temp)
+                contadorRegistros = contadorRegistros + 1
+                valorTotalCotistaOuNaoCotista = valorTotalCotistaOuNaoCotista + valorCotistaOuNaoCotista
 
         # HeatMap([[-8.0176527, -34.9443739]], radius=25).add_to(mapa)
         HeatMap(locais).add_to(mapa)
 
         mapa.save('mapa.html')
 
-        fatCota = {'Post': True, 'Ma': mapa.get_root().render()}
+        fatCota = {'Post': True, 'Ma': mapa.get_root().render(), 'Contador': valorTotalCotistaOuNaoCotista}
 
         return render(request, template_name, fatCota)
         # return render_to_response('mapa.html')
     else:
         dimCategoriaAdministrativa = DimCategoriaAdministrativa.objects.all()
         dimCorRaca = DimCorRaca.objects.all()
-        fatoCotasDimCurso = FatoCotas.objects.values_list("fk_curso", "fk_curso__descricao", named=True).distinct()
+        fatoCotasDimCurso = FatoCotas.objects.values_list("fk_curso__descricao", named=True).distinct()
         fatoCotasDimIes = FatoCotas.objects.values_list("fk_ies", "fk_ies__no_ies", named=True).distinct()
-        fatoCotasDimLocalOferta = FatoCotas.objects.values_list("fk_local_oferta", "fk_local_oferta__no_municipio",
-                                                                "fk_local_oferta__no_uf", named=True).distinct()
+        fatoCotasDimLocalOferta = FatoCotas.objects.values_list("fk_local_oferta__no_uf", named=True).distinct()
         dimModalidadeEnsino = DimModalidadeEnsino.objects.all()
         dimOrganizacaoAcademica = DimOrganizacaoAcademica.objects.all()
         dimSexo = DimSexo.objects.all()
