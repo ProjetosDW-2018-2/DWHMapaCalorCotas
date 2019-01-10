@@ -11,8 +11,8 @@
 
 ### Objetivos
 
-- [X] Aplicar os conceitos e ferramentas utilizados durante a disciplina em uma base de dados abertos do INEP;
-- [X] Criar consultas, apresentadas através de gráficos e um mapa de calor;
+- [X] Aplicar os conceitos e ferramentas utilizados durante a disciplina em uma base de dados abertos sobre Cotas na Educação Superior;
+- [X] Apresentar os dados através de um mapa de calor;
 
 ### Instalação e configuração de ambiente
 
@@ -25,6 +25,11 @@ $ conda --version
 ```
 * 1.2) Instalar o PyCharm Community
 - [x] [PyCharm](https://www.jetbrains.com/pycharm/download)
+
+* 1.3) Instalar os Packages abaixo através do PyCharm:
+- [x] Django 2.1.4
+- [x] Folium 0.7.0
+- [x] MySqlClient 1.3.14
 
 ### Consultas e resultados
 
