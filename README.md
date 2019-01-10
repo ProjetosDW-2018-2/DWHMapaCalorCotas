@@ -4,10 +4,10 @@
 > (Python + SQL + Pentaho)
 
 ### Índice
-* [1) Objetivos
-* [2) Instalação / configuração de ambiente
-* [3) Consultas e resultados
-* [4) Equipe
+* 1) Objetivos
+* 2) Instalação / configuração de ambiente
+* 3) Consultas e resultados
+* 4) Equipe
 
 ### Objetivos
 
