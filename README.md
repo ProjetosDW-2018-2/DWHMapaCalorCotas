@@ -1,6 +1,6 @@
 # DWHMapaCalor
 
-### Programa de Pós-Graduação PPGIA - Mestrado - Projeto Data Warehousing - 2018.2.
+### Programa de Pós-Graduação PPGIA - Mestrado - Projeto Data Warehouse - 2018.2.
 > (Python + Django + MySQL + Pentaho)
 
 ### Índice
