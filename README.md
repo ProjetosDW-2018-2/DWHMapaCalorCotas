@@ -46,6 +46,6 @@ $ conda --version
 
 ### Equipe
 - [Leonardo Farias](https://github.com/leoroberto)<br>
-- [Wendell](https://github.com/leoroberto)<br>
-- [Bonny](https://github.com/leoroberto)<br>
-- [Thyago](https://github.com/leoroberto)<br>
+- [Wendell Soares](https://github.com/wendellsoares)<br>
+- [Bonny Kathy](https://github.com/bonnykathy)<br>
+- [Thiago Martins](https://github.com/tmartiiins)<br>
