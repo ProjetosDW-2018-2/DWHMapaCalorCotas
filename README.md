@@ -31,9 +31,12 @@ $ conda --version
 - [x] Folium 0.7.0
 - [x] MySqlClient 1.3.14
 
-### Consultas e resultados
-
-
+* 1.4) Mudar os dados de conexão do banco de dados no arquivo settings.py:
+- [x] 'NAME': 'xxxxxx',
+- [x] 'USER': 'xxxxxx',
+- [x] 'PASSWORD': 'xxxxxx',
+- [x] 'HOST': 'xxxxxx',
+- [x] 'PORT': 'xxxxxx',
 
 ### Equipe
 - [Leonardo Farias](https://github.com/leoroberto)<br>
