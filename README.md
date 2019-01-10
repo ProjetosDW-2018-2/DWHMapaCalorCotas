@@ -1,7 +1,7 @@
 # DWHMapaCalor
 
 ### Programa de Pós-Graduação PPGIA - Mestrado - Projeto Data Warehousing - 2018.2.
-> (Python + MySQL + Pentaho)
+> (Python + Django + MySQL + Pentaho)
 
 ### Índice
 * [1) Objetivos
@@ -37,6 +37,12 @@ $ conda --version
 - [x] 'PASSWORD': 'xxxxxx',
 - [x] 'HOST': 'xxxxxx',
 - [x] 'PORT': 'xxxxxx',
+
+* 1.5) Após executar o projeto, seguir os passos abaixo:
+- [x] Acessar o endereço "http://127.0.0.1:8081/filtro_mapa/"
+- [x] Escolher os filtros e clicar em exibir
+- [x] Aguardar a exibição da mensagem "Mapa Gerado com Sucesso!"
+- [x] Abrir o arquivo DWHMapaCalor\MapaCalor\mapa.html
 
 ### Equipe
 - [Leonardo Farias](https://github.com/leoroberto)<br>
